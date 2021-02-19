@@ -1,0 +1,53 @@
+{
+  "name": "find-my-group",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npm run build && node ./dist-server/bin/www",
+    "autostart": "npm run build && nodemon ./dist-server/bin/www",
+    "convert": "npx babel ./server --out-dir dist-server",
+    "clean": "rimraf dist-server",
+    "build": "npm run clean && npm run convert",
+    "watch:start": "nodemon"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "cookie-parser": "~1.4.4",
+    "core-js": "^3.8.3",
+    "cuid": "^2.1.8",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.11.13",
+    "morgan": "~1.9.1",
+    "regenerator-runtime": "^0.13.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-async-to-generator": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "nodemon": "^2.0.7",
+    "rimraf": "^3.0.2"
+  },
+  "nodemonConfig": {
+    "exec": "npm run start",
+    "watch": [
+      "server/*",
+      "public/*"
+    ],
+    "ignore": [
+      "**/__tests__/**",
+      "*.test.js",
+      "*.spec.js"
+    ]
+  },
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    {
+      "regenerator": true
+    },
+    "@babel/preset-env"
+  ]
+}
